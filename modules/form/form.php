@@ -308,14 +308,14 @@ class formMod extends core
 	{
 		// Traitement du formulaire
 		if($this->getPost('submit')) {
-			// Préparation des données (index + 1 comme l'item 0 = champ de copie qui est supprimé à l'enregistrement)
+			// Préparation des données
 			$data = [];
 			$mail = '';
 			foreach($this->getPost('input') as $key => $value) {
 				// Préparation des données pour la création dans la base
-				$data[$this->getData([$this->getUrl(0), 'inputs', $key + 1, 'name'])] = $value;
+				$data[$this->getData([$this->getUrl(0), 'inputs', $key, 'name'])] = $value;
 				// Préparation des données pour le mail
-				$mail .= '<li>' . $this->getData([$this->getUrl(0), 'inputs', $key + 1, 'name']) . ' : ' . $value . '</li>';
+				$mail .= '<li>' . $this->getData([$this->getUrl(0), 'inputs', $key, 'name']) . ' : ' . $value . '</li>';
 			}
 			// Crée les données
 			$this->setData([$this->getUrl(0), 'data', helper::increment(1, $this->getData([$this->getUrl(0), 'data'])), $data]);
